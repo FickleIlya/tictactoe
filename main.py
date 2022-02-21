@@ -86,7 +86,7 @@ def win_check(board: list, x_o: str, k: int, place: tuple) -> bool:
                                 return True
                         else:
                             break
-        # checking diagonally
+        # diagonally form left top to right down
         elif way == 2:
 
             cnt = 1
