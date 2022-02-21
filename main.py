@@ -89,74 +89,69 @@ def win_check(board: list, x_o: str, k: int, place: tuple) -> bool:
         # checking diagonally
         elif way == 2:
 
-            for i in range(2):
-                # diagonally form left top to right down
-                if i == 0:
-                    cnt = 1
+            cnt = 1
+            for j in range(2):
 
-                    for j in range(2):
+                for d in range(1, k):
 
-                        for d in range(1, k):
+                    if j == 0:
 
-                            if j == 0:
+                        r1 = row + d
+                        c1 = col + d
+                        if 0 <= r1 < len(field) and 0 <= c1 < len(field[0]) and field[r1][c1] == x_o:
 
-                                r1 = row + d
-                                c1 = col + d
+                            cnt += 1
 
-                                if 0 <= r1 < len(field) and 0 <= c1 < len(field[0]) and field[r1][c1] == x_o:
+                            if cnt == k:
+                                return True
+                        else:
+                                break
 
-                                    cnt += 1
+                    elif j == 1:
 
-                                    if cnt == k:
-                                        return True
-                                else:
-                                    break
+                        r2 = row - d
+                        c2 = col - d
 
-                            elif j == 1:
+                        if 0 <= r2 < len(field) and 0 <= c2 < len(field[0]) and field[r2][c2] == x_o:
+                            cnt += 1
 
-                                r2 = row - d
-                                c2 = col - d
+                            if cnt == k:
+                                return True
+                        else:
+                            break
+        # diagonally form right top to left down
+        elif way == 3:
+            cnt = 1
 
-                                if 0 <= r2 < len(field) and 0 <= c2 < len(field[0]) and field[r2][c2] == x_o:
-                                    cnt += 1
+            for j in range(2):
 
-                                    if cnt == k:
-                                        return True
-                                else:
-                                    break
-                # diagonally form right top to left down
-                elif i == 1:
-                    cnt = 1
+                for d in range(1, k):
 
-                    for j in range(2):
+                    if j == 0:
 
-                        for d in range(1, k):
+                        r1 = row - d
+                        c1 = col + d
 
-                            if j == 0:
+                        if 0 <= r1 < len(field) and 0 <= c1 < len(field[0]) and field[r1][c1] == x_o:
+                            cnt += 1
 
-                                r1 = row - d
-                                c1 = col + d
+                            if cnt == k:
+                                return True
+                        else:
+                            break
 
-                                if 0 <= r1 < len(field) and 0 <= c1 < len(field[0]) and field[r1][c1] == x_o:
-                                    cnt += 1
+                    elif j == 1:
 
-                                    if cnt == k:
-                                        return True
-                                else:
-                                    break
+                        r2 = row + d
+                        c2 = col - d
 
-                            elif j == 1:
+                        if 0 <= r2 < len(field) and 0 <= c2 < len(field[0]) and field[r2][c2] == x_o:
+                            cnt += 1
 
-                                r2 = row + d
-                                c2 = col - d
-
-                                if 0 <= r2 < len(field) and 0 <= c2 < len(field[0]) and field[r2][c2] == x_o:
-                                    cnt += 1
-
-                                    if cnt == k:
-                                        return True
-                                else:
-                                    break
+                            if cnt == k:
+                                return True
+                        else:
+                            break
 
 
 def game(board: list, k: int):
